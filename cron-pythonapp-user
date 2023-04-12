@@ -1,0 +1,8 @@
+# Crontab for pythonapp user
+# * * * * * echo "[$(date)] Cron is working for user $(whoami)" >> /var/log/cron.log 2>&1
+
+# for Alpine:
+# 4 am every Saturday
+# beware of Timezone
+# check the RUN setup-timezone line in Dockerfile to set the time zone
+0 4 * * 6 /bin/sh /app/start_python_script.sh >> /var/log/cron.log 2>&1
