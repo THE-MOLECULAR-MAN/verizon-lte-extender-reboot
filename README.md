@@ -13,6 +13,7 @@ SKU: ASK-SFE116
 FCC ID: H8N-ASK-SFE116
 
 Developed in the following environment, known to be working:
+
     * Verizon Network Extender software version: GA5.11 - V0.5.011.1322
     * macOS 13.3 (Ventura)
     * Python 3.9.6
@@ -21,19 +22,23 @@ Developed in the following environment, known to be working:
 Docker images hosted here:
    https://hub.docker.com/repository/docker/themolecularman/verizon-lte-extender-reboot/
 
-Can be deployed in a Docker container using the Dockerfile.
-
-Run the ./build_docker.sh script to build the Docker image. It is manually configured to build for the x86_64 (AMD64) architecture. Modify the top line in Dockerfile if you need to build it for other architectures.
-
 How to deploy the Docker container:
+
  1) build the docker image yourself or check it out from DockerHub
 
-```./build_docker.sh``` - build it yourself
+```./build_docker.sh``` - build it yourself. It is manually configured to build for the x86_64 (AMD64) architecture. Modify the top line in Dockerfile if you need to build it for other architectures.
 
 ```docker pull themolecularman/verizon-lte-extender-reboot``` - pull the image from Docker Hub
 
-2) Create a new Docker container and specify the following environment variables:
+2) Create a new Docker container and specify the following environment variables. You can modify the .env file and use ```docker compose up``` or specify them manually when creating the container.
 
 ```VERIZON_URL``` - URL (including HTTPS) for accessing the Verizon Extender's web interface. Ex: "https://192.168.1.108"
 
 ```VERIZON_PASSWORD``` - Password for Verizon exender
+
+
+You can also skip the Docker container and use the Python script as a standalone too. 
+```
+echo hunter2 > password_file.txt
+soft_reboot_verizon_4g_repeater.py --url="https://192.168.1.108" --password-file=password_file.txt
+```
