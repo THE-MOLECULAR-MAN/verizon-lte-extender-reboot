@@ -1,0 +1,4 @@
+# PIP packages with versions
+pip >= 23.0.1
+setuptools >= 67.6.0
+selenium >= 4.8.2

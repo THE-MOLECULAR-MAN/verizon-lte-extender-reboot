@@ -1,0 +1,17 @@
+# compose.yaml for verizon-lte-extender-reboot
+version: "3.9"
+# Synology supports up to docker version 20.10.3-1308 as of Apr 10, 2023
+
+# timezone is set by Dockerfile during build process, not in this file
+
+services:
+  crond:
+    build: .
+    image: honkhonkdocker/verizon-lte-extender-reboot
+    container_name: verizon-lte-extender-reboot
+    network_mode: host
+    environment:
+      - VERSION=docker
+      - VERIZON_URL=${VERIZON_URL}
+      - VERIZON_PASSWORD=${VERIZON_PASSWORD}
+    restart: always
